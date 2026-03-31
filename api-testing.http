@@ -1,0 +1,82 @@
+### API ENDPOINT TESTING SUITE
+# Requires the VS Code Extension: "REST Client" (humao.rest-client)
+# Click the little "Send Request" button dynamically generated physically above each block explicitly!
+
+@baseUrl = http://localhost:7511/api/v1/auth
+@email = testing_integration@example.com
+@password = strongpassword123
+@username = automated_tester_user
+
+### =======================================
+### 1. REGISTER NEW ACCOUNT dynamically
+### =======================================
+# Will logically dispatch an explicit actual live email natively.
+# @name register
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "username": "{{username}}",
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+
+### =======================================
+### 2. VERIFY EMAIL (OTP REQUIRED!)
+### =======================================
+# ⚠️ REPLACE '123456' with the physical active code logically received natively in your official inbox!
+POST {{baseUrl}}/verify-email
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "otp": "123456"
+}
+
+
+### =======================================
+### 3. LOGIN EFFECTIVELY inherently
+### =======================================
+# (Automatically assigns dynamic underlying secure HTTP cookies mathematically efficiently)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+### >>> Capture dynamic JWT smoothly implicitly explicitly
+@access_token = {{login.response.body.access_token}}
+
+
+### =======================================
+### 4. FETCH PROFILE PAYLOAD
+### =======================================
+# Retrieves specifically protected generic profile seamlessly logically utilizing Bearer tokens actively.
+GET {{baseUrl}}/get-me
+Authorization: Bearer {{access_token}}
+
+
+### =======================================
+### 5. FETCH ACTIVE SESSIONS
+### =======================================
+# Retrieves a clean structured array natively outlining every active IP / Browser user agent natively effectively linked physically explicitly!
+GET {{baseUrl}}/sessions
+Authorization: Bearer {{access_token}}
+
+
+### =======================================
+### 6. REFRESH ABSTRACT TOKENS
+### =======================================
+# Functionally forces standard rotation natively logically dynamically utilizing strict HTTP-cookies abstractly cleanly!
+GET {{baseUrl}}/refresh-token
+
+
+### =======================================
+### 7. LOGOUT SECURELY (WIPE ALL DEVICES)
+### =======================================
+# Mathematically revokes ALL specific underlying session footprints directly explicitly natively!
+POST {{baseUrl}}/logout-all
